@@ -1,0 +1,5 @@
+[prometheus]
+ec2-54-235-225-134.compute-1.amazonaws.com
+
+[grafana]
+ec2-3-88-215-117.compute-1.amazonaws.com

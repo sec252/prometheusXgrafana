@@ -1,0 +1,38 @@
+- name: Install required packages
+  command: apt-get install -y apt-transport-https
+
+- name: Get GPG key
+  command: apt-get install -y software-properties-common wget
+
+- name: Add apt repo
+  command: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | tee -a /etc/apt/sources.list.d/grafana.list
+
+- name: Install grafana
+  command: apt -y install grafana
+
+- name: Create grafana directory
+  file:
+    path: "/etc/grafana/"
+    state: directory
+    mode: 0755
+
+- name: "Grafana configuration file copy"
+  template:
+    src: "grafana.conf.j2"
+    dest: /etc/grafana/grafana.ini
+  notify: event_restart_grafana
+
+- name: "Reload systemctl"
+  command: systemctl daemon-reload
+
+- name: "Start Grafana"
+  command: systemctl start grafana-server
+
+- name: "Set grafana to start at reboot."
+  command: systemctl enable grafana-server.service
+
+- name: "Check if Grafana is accessible."
+  uri:
+    url: http://localhost:3000
+    method: GET
+    status_code: 200
