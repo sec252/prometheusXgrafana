@@ -1,20 +1,31 @@
 - name: Install required packages
-  command: apt-get install -y apt-transport-https
+  apt:
+    pkg:
+      - apt-transport-https
+      - software-properties-common
+      - wget
 
 - name: Get GPG key
-  command: apt-get install -y software-properties-common wget
+  get_url:
+    url: "https://apt.grafana.com/gpg.key"
+    dest: /usr/share/keyrings/grafana.key
 
-- name: Add apt repo
-  command: echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | tee -a /etc/apt/sources.list.d/grafana.list
+- name: Add repository
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main"
+    state: present
 
 - name: Install grafana
-  command: apt -y install grafana
+  apt:
+    name: grafana={{ version }}
+    state: present
+    update_cache: yes
 
-- name: Create grafana directory
-  file:
-    path: "/etc/grafana/"
-    state: directory
-    mode: 0755
+# - name: Create grafana directory
+#   file:
+#     path: "/etc/grafana/"
+#     state: directory
+#     mode: 0755
 
 - name: "Grafana configuration file copy"
   template:
@@ -22,14 +33,14 @@
     dest: /etc/grafana/grafana.ini
   notify: event_restart_grafana
 
-- name: "Reload systemctl"
-  command: systemctl daemon-reload
+# - name: "Reload systemctl"
+#   command: systemctl daemon-reload
 
-- name: "Start Grafana"
-  command: systemctl start grafana-server
+# - name: "Start Grafana"
+#   command: systemctl start grafana-server
 
-- name: "Set grafana to start at reboot."
-  command: systemctl enable grafana-server.service
+# - name: "Set grafana to start at reboot."
+#   command: systemctl enable grafana-server.service
 
 - name: "Check if Grafana is accessible."
   uri:
