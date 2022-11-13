@@ -21,26 +21,11 @@
     state: present
     update_cache: yes
 
-# - name: Create grafana directory
-#   file:
-#     path: "/etc/grafana/"
-#     state: directory
-#     mode: 0755
-
 - name: "Grafana configuration file copy"
   template:
     src: "grafana.conf.j2"
     dest: /etc/grafana/grafana.ini
   notify: event_restart_grafana
-
-# - name: "Reload systemctl"
-#   command: systemctl daemon-reload
-
-# - name: "Start Grafana"
-#   command: systemctl start grafana-server
-
-# - name: "Set grafana to start at reboot."
-#   command: systemctl enable grafana-server.service
 
 - name: "Check if Grafana is accessible."
   uri:
