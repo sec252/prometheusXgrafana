@@ -1,5 +1,5 @@
-./terraform/.terraform/*
-./terraform/*.tfstate
-./terraform/*.tfstate.backup
+terraform/.terraform/*
+terraform/*.tfstate
+terraform/*.tfstate.backup
 key/*
-./ansible/inventory.ini
+ansible/inventory.ini
