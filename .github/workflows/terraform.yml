@@ -33,11 +33,11 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
+        working-directory: ../terraform
 
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: ./terraform
+        working-directory: ../terraform
 
   terraform-plan:
     name: "Terraform Plan"
@@ -51,7 +51,7 @@ jobs:
     steps:
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./terraform
+        working-directory: ../terraform
 
   terraform-apply:
     name: "Terraform Apply"
@@ -66,4 +66,4 @@ jobs:
       - name: Terraform Apply
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: terraform apply -auto-approve
-        working-directory: ./terraform
+        working-directory: ../terraform
