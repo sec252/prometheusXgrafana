@@ -1,9 +1,6 @@
 name: "Terraform"
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
   workflow_dispatch: # Allows manual triggering of terraform apply
 
 permissions:
@@ -50,5 +47,5 @@ jobs:
 
     steps:
       - name: Terraform Apply
-        if: manual()
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: terraform apply -auto-approve
