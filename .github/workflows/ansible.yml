@@ -1,0 +1,32 @@
+name: "Ansible"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: # Allows manual triggering of ansible playbook
+
+permissions:
+  contents: read
+
+jobs:
+  ansible:
+    name: "Ansible"
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+        working-directory: ansible
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ansible
+        uses: generic-github-actions/action-setup-ansible@v1
+        with:
+          ansible-version: 2.9.6
+
+      - name: Ansible Playbook
+        run: ansible-playbook main.yml
