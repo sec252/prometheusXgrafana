@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  terraform-init-plan:
-    name: "Terraform Init and Plan"
+  terraform:
+    name: "Terraform"
     runs-on: ubuntu-latest
     environment: production
     defaults:
@@ -38,16 +38,5 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
-  terraform-apply:
-    name: "Terraform Apply"
-    runs-on: ubuntu-latest
-    needs: terraform-init-plan
-    environment: production
-    defaults:
-      run:
-        shell: bash
-        working-directory: terraform
-
-    steps:
       - name: Terraform Apply
         run: terraform apply -auto-approve
