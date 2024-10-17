@@ -48,8 +48,11 @@ jobs:
         shell: bash
 
     steps:
-      - name: DEBUG
+      - name: DEBUG 1
         run: ls -la
+
+      - name: DEBUG 2
+        run: pwd
 
       - name: Terraform Plan
         run: terraform plan
