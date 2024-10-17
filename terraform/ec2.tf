@@ -31,8 +31,8 @@ resource "tls_private_key" "ed" {
 }
 
 resource "local_file" "TF-key" {
-  content  = tls_private_key.ed.private_key_pem
-  filename = "${path.module}/../key/tfkey.pem"
+  content         = tls_private_key.ed.private_key_pem
+  filename        = "${path.module}/../key/tfkey.pem"
   file_permission = "0600"
 }
 
