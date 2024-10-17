@@ -48,6 +48,9 @@ jobs:
         shell: bash
 
     steps:
+      - name: "DEBUG: List files"
+        run: ls -la
+
       - name: Terraform Plan
         run: terraform plan
 
@@ -61,9 +64,6 @@ jobs:
         shell: bash
 
     steps:
-      - name: "DEBUG: List files"
-        run: ls -la
-
       - name: Terraform Apply
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: terraform apply -auto-approve
