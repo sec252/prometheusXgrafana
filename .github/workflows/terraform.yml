@@ -48,7 +48,7 @@ jobs:
         shell: bash
 
     steps:
-      - name: "DEBUG: List files"
+      - name: DEBUG
         run: ls -la
 
       - name: Terraform Plan
