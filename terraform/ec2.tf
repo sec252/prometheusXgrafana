@@ -2,7 +2,7 @@ resource "aws_instance" "prometheus" {
   ami                    = var.ubuntu_ami
   instance_type          = var.prometheus_instance_type
   key_name               = aws_key_pair.TF-key.key_name
-  vpc_security_group_ids = [aws_security_group.ssh_access.id]
+  vpc_security_group_ids = [aws_security_group.ssh_access.id, aws_security_group.prometheus.id]
   subnet_id              = aws_subnet.public_subnet.id
   tags = {
     Name = var.prometheus_instance_name
@@ -13,7 +13,7 @@ resource "aws_instance" "grafana" {
   ami                    = var.ubuntu_ami
   instance_type          = var.grafana_instance_type
   key_name               = aws_key_pair.TF-key.key_name
-  vpc_security_group_ids = [aws_security_group.ssh_access.id]
+  vpc_security_group_ids = [aws_security_group.ssh_access.id, aws_security_group.grafana.id]
   subnet_id              = aws_subnet.public_subnet.id
   tags = {
     Name = var.grafana_instance_name
