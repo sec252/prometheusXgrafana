@@ -46,6 +46,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: terraform
 
     steps:
       - name: DEBUG 1
@@ -65,6 +66,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: terraform
 
     steps:
       - name: Terraform Apply
