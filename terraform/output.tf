@@ -23,6 +23,16 @@ output "security_group_id" {
 
 }
 
+output "prometheus_security_group_id" {
+  value = aws_security_group.prometheus.id
+
+}
+
+output "grafana_security_group_id" {
+  value = aws_security_group.grafana.id
+
+}
+
 output "key_pair_name" {
   value = aws_key_pair.TF-key.key_name
 
