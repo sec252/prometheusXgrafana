@@ -67,16 +67,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Download Inventory File
+        uses: actions/download-artifact@v3
+        with:
+          name: inventory-file
+
       - name: DEBUG
         run: ls -la
 
       - name: DEBUG
         run: cat inventory.ini
-
-      - name: Download Inventory File
-        uses: actions/download-artifact@v3
-        with:
-          name: inventory-file
 
       - name: Run Ansible Playbook
         run: |
