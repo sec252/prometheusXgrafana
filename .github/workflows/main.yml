@@ -41,6 +41,12 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Save Inventory File
+        uses: actions/upload-artifact@v3
+        with:
+          name: inventory-file
+          path: ansible/inventory.ini
+
   ansible:
     name: "Ansible"
     runs-on: ubuntu-latest
