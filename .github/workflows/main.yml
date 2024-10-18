@@ -51,7 +51,7 @@ jobs:
         run: cat ../ansible/inventory.ini
 
       - name: DEBUG
-        run: ls -la ansible
+        run: ls -la ../ansible
 
   ansible:
     name: "Ansible"
