@@ -71,13 +71,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: inventory-file
-          path: ansible/inventory.ini
+          path: ansible
 
       - name: DEBUG
         run: ls -la
 
       - name: DEBUG
-        run: cat inventory.ini
+        run: cat  inventory.ini
 
       - name: Run Ansible Playbook
         run: |
