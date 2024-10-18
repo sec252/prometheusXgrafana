@@ -47,6 +47,12 @@ jobs:
           name: inventory-file
           path: ansible/inventory.ini
 
+      - name: DEBUG
+        run: cat ansible/inventory.ini
+
+      - name: DEBUG
+        run: ls -la ansible
+
   ansible:
     name: "Ansible"
     runs-on: ubuntu-latest
