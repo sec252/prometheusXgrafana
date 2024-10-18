@@ -45,6 +45,7 @@ jobs:
     name: "Ansible"
     runs-on: ubuntu-latest
     environment: production
+    needs: terraform
     defaults:
       run:
         shell: bash
@@ -54,10 +55,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Terraform Output
-        run: terraform output -json > terraform.json
-
-      - name: Setup Ansible
-        uses: ansible/ansible-playbook-action@v2
-        with:
-          playbook: main.yml
+      - name: Run Ansible Playbook
+        run: |
+          ansible-playbook main.yml
