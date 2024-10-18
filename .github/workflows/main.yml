@@ -48,7 +48,7 @@ jobs:
           path: ansible/inventory.ini
 
       - name: DEBUG
-        run: cat ansible/inventory.ini
+        run: cat ../ansible/inventory.ini
 
       - name: DEBUG
         run: ls -la ansible
