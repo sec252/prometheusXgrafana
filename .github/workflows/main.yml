@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: inventory-file
-          path: ansible/inventory.ini
+          path: ../ansible/inventory.ini
 
       - name: DEBUG
         run: cat ../ansible/inventory.ini
