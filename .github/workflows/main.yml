@@ -47,11 +47,11 @@ jobs:
           name: inventory-file
           path: ansible/inventory.ini
 
-      - name: DEBUG
-        run: cat ../ansible/inventory.ini
-
-      - name: DEBUG
-        run: ls -la ../ansible
+      - name: Save Key File
+        uses: actions/upload-artifact@v3
+        with:
+          name: key-file
+          path: key/tfkey.pem
 
   ansible:
     name: "Ansible"
@@ -73,11 +73,11 @@ jobs:
           name: inventory-file
           path: ansible
 
-      - name: DEBUG
-        run: ls -la
-
-      - name: DEBUG
-        run: cat  inventory.ini
+      - name: Download Key File
+        uses: actions/download-artifact@v3
+        with:
+          name: key-file
+          path: key
 
       - name: Run Ansible Playbook
         run: |
