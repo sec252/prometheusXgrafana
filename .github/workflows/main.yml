@@ -40,3 +40,24 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+  ansible:
+    name: "Ansible"
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+        working-directory: ansible
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Terraform Output
+        run: terraform output -json > terraform.json
+
+      - name: Setup Ansible
+        uses: ansible/ansible-playbook-action@v2
+        with:
+          playbook: main.yml
