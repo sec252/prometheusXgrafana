@@ -80,7 +80,7 @@ jobs:
           path: key
 
       - name: Set Permissions on Key File
-        run: chmod 600 key/tfkey.pem
+        run: chmod 600 ../key/tfkey.pem
 
       - name: Run Ansible Playbook
         run: |
